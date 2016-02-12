@@ -22,8 +22,7 @@
     "index.js",
     "LICENSE.md",
     "package.json",
-    "README.md",
-    "util.js"
+    "README.md"
   ],
   "main": "./index.js",
   "repository": {
@@ -31,7 +30,7 @@
     "url": "git://github.com/AndreasMadsen/xorshift.git"
   },
   "scripts": {
-    "lint": "semistandard",
+    "lint": "standard",
     "test": "tap --cov test/**/*.js",
     "test:compile": "$CC test/xorshift.c -o test/xorshift -std=c99"
   },
@@ -40,8 +39,8 @@
   },
   "devDependencies": {
     "benchmark": "^2.1.0",
-    "semistandard": "^7.0.5",
     "spawn-sync": "^1.0.15",
+    "standard": "^6.0.4",
     "tap": "^5.4.0"
   }
 }

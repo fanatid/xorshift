@@ -1,39 +1,70 @@
-'use strict';
+'use strict'
 
-var tap = require('tap');
-var XorShift = require('../lib/xorshift');
+var tap = require('tap')
+var XorShift = require('../lib/xorshift')
 
 tap.test('XorShift', function (t) {
-  var xorshift;
-  var buffer = new Buffer(8);
+  var xorshift
 
   t.beforeEach(function (done) {
-    xorshift = new XorShift();
-    done();
-  });
+    xorshift = new XorShift()
+    done()
+  })
 
-  t.test('should use _random', function (t) {
+  t.test('_hex2seed', function (t) {
+    t.test('size is 4 and hex is 0102030405060708', function (t) {
+      t.same(xorshift._hex2seed(4, '0102030405060708'), [ 16909060, 84281096, 0, 0 ])
+      t.end()
+    })
+
+    t.test('size is 4 and hex is 02030405060708', function (t) {
+      t.same(xorshift._hex2seed(4, '02030405060708'), [ 33752069, 395016, 0, 0 ])
+      t.end()
+    })
+
+    t.test('size is 1 and hex is 02030405060708', function (t) {
+      t.same(xorshift._hex2seed(1, '02030405060708'), [ 33752069 ])
+      t.end()
+    })
+
+    t.end()
+  })
+
+  t.test('randomInt64 throw Error', function (t) {
     t.throws(function () {
-      xorshift.random();
-    }, 'Not implemented!');
-    t.end();
-  });
+      xorshift.randomInt64()
+    }, 'Not implemented!')
+    t.end()
+  })
 
-  t.test('random should drop 12 bits', function (t) {
-    xorshift._random = function () { return [ 0xffffffff, 0xffffffff ]; };
-    buffer.writeDoubleBE(xorshift.random() + 1, 0);
-    t.equal(buffer.readUInt32BE(0), 0x3fffffff);
-    t.equal(buffer.readUInt32BE(4), 0xffffffff);
-    t.end();
-  });
+  t.test('random', function (t) {
+    t.test('should use randomInt64', function (t) {
+      xorshift.randomInt64 = function () { return [0, 0x00000f00] }
+      t.equal(xorshift.random(), Math.pow(2, -53))
+      t.end()
+    })
 
-  t.test('random should drop least 12 bits', function (t) {
-    xorshift._random = function () { return [ 0xffffffff, 0xfffff000 ]; };
-    buffer.writeDoubleBE(xorshift.random() + 1, 0);
-    t.equal(buffer.readUInt32BE(0), 0x3fffffff);
-    t.equal(buffer.readUInt32BE(4), 0xffffffff);
-    t.end();
-  });
+    t.test('should drop first 11 bits', function (t) {
+      xorshift.randomInt64 = function () { return [ 0xffffffff, 0xffffffff ] }
+      var buffer = new Buffer(8)
+      buffer.writeDoubleBE(xorshift.random(), 0)
+      t.equal(buffer.readUInt32BE(0), 0x3fefffff)
+      t.equal(buffer.readUInt32BE(4), 0xffffffff)
+      t.end()
+    })
 
-  t.end();
-});
+    t.end()
+  })
+
+  t.test('randomBytes', function (t) {
+    t.test('size equal 7', function (t) {
+      xorshift.randomInt64 = function () { return [ 0xffffffff, 0xffffffff ] }
+      t.same(xorshift.randomBytes(7).toString('hex'), 'ffffffffffffff')
+      t.end()
+    })
+
+    t.end()
+  })
+
+  t.end()
+})
