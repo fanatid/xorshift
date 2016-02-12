@@ -1,7 +1,7 @@
 {
-  "name": "xorshift",
-  "version": "0.2.0",
-  "description": "Random number generator using xorshift",
+  "name": "xorshift.js",
+  "version": "0.1.0",
+  "description": "xorshift* / xorshift+ generators",
   "keywords": [
     "random",
     "prng",
@@ -11,6 +11,9 @@
     "xorshift1024*",
     "xorshift1024star"
   ],
+  "bugs": {
+    "url": "https://github.com/fanatid/xorshift.js/issues"
+  },
   "license": "MIT",
   "author": "Andreas Madsen <amwebdk@gmail.com>",
   "contributors": [
@@ -27,7 +30,7 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/AndreasMadsen/xorshift.git"
+    "url": "https://github.com/fanatid/xorshift.js.git"
   },
   "scripts": {
     "lint": "standard",
