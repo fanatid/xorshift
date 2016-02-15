@@ -1,10 +1,11 @@
 {
   "name": "xorshift.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "xorshift* / xorshift+ generators",
   "keywords": [
-    "random",
     "prng",
+    "random",
+    "randomBytes",
     "xorshift",
     "xorshift128+",
     "xorshift128plus",
@@ -22,10 +23,7 @@
   ],
   "files": [
     "lib",
-    "index.js",
-    "LICENSE",
-    "package.json",
-    "README.md"
+    "index.js"
   ],
   "main": "./index.js",
   "repository": {
