@@ -1,5 +1,4 @@
 'use strict'
-
 var tap = require('tap')
 var XorShift = require('../lib/xorshift')
 var XorShift1024Star = require('../lib/xorshift1024star')

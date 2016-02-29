@@ -5,7 +5,7 @@
 
 > Pseudorandom number generator using [xorshift](http://xorshift.di.unimi.it/) (xorshift128+ and xorshift1024*)
 
-This package is a fork of [xorshift](https://www.npmjs.com/package/xorshift) with fixed `random`, added `randomBytes` and `xorshift1024*`.
+This package is based on [xorshift](https://www.npmjs.com/package/xorshift) [[github](https://github.com/AndreasMadsen/xorshift)] with fixed `random` and added `randomBytes` & `XorShift1024Star`.
 
 ## Installation
 
@@ -58,8 +58,9 @@ assert(prng1.random() === prng2.random())
 This method returns a random 64-bit integer represented as array with two 32-bit numbers.
 
 ```js
-var xorshift = require('xorshift.js')
-console.log(xorshift.randomInt64()) // [ 963369356, 63457019 ]
+var XorShift128Plus = require('xorshift.js').XorShift128Plus
+var prng = new XorShift128Plus([1, 0, 2, 0])
+console.log(prng.randomInt64()) // [ 8388677, 32896 ]
 ```
 
 #### random()
@@ -67,8 +68,9 @@ console.log(xorshift.randomInt64()) // [ 963369356, 63457019 ]
 This method returns a floating-point, pseudo-random number in the range [0, 1). Like `Math.ramdom`.
 
 ```js
-var xorshift = require('xorshift.js')
-console.log(xorshift.random()) // 0.3946640888604528
+var XorShift128Plus = require('xorshift.js').XorShift128Plus
+var prng = new XorShift128Plus([1, 0, 2, 0])
+console.log(prng.random()) // 0.0019531410653161885
 ```
 
 #### randomBytes(size)
@@ -76,9 +78,9 @@ console.log(xorshift.random()) // 0.3946640888604528
 Generates pseudo-random data. The size argument is a number indicating the number of bytes to generate.
 
 ```js
-var xorshift = require('xorshift')
-var buffer = xorshift.randomBytes(10)
-console.log(buffer.toString('hex')) // 6fc7135516658ef9ce48
+var XorShift128Plus = require('xorshift.js').XorShift128Plus
+var prng = new XorShift128Plus([1, 0, 2, 0])
+console.log(prng.randomBytes(10).toString('hex')) // 00800045000080800200
 ```
 
 ## License

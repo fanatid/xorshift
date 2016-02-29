@@ -32,8 +32,9 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "tap --cov test/**/*.js",
-    "test:compile": "$CC test/xorshift.c -o test/xorshift -std=c99"
+    "test": "npm run lint && npm run unit",
+    "unit": "tap --cov test/**/*.js",
+    "unit:compile": "$CC test/xorshift.c -o test/xorshift -std=c99"
   },
   "dependencies": {
     "inherits": "^2.0.1"

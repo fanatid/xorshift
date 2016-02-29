@@ -1,5 +1,4 @@
 'use strict'
-
 var path = require('path')
 var spawnSync = require('child_process').spawnSync || require('spawn-sync')
 

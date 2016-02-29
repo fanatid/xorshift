@@ -15,10 +15,10 @@ addons:
     packages:
       - gcc-4.8
 before_script:
-  - CC=gcc-4.8 npm run test:compile
+  - CC=gcc-4.8 npm run unit:compile
 env:
   matrix:
-    - TEST_SUITE=test
+    - TEST_SUITE=unit
 matrix:
   include:
     - os: linux
