@@ -1,14 +1,9 @@
 'use strict'
-var tap = require('tap')
+var tape = require('tape')
 var XorShift = require('../lib/xorshift')
 
-tap.test('XorShift', function (t) {
-  var xorshift
-
-  t.beforeEach(function (done) {
-    xorshift = new XorShift()
-    done()
-  })
+tape.test('XorShift', function (t) {
+  var xorshift = new XorShift()
 
   t.test('_hex2seed', function (t) {
     t.test('size is 4 and hex is 0102030405060708', function (t) {
@@ -38,13 +33,21 @@ tap.test('XorShift', function (t) {
 
   t.test('random', function (t) {
     t.test('should use randomInt64', function (t) {
-      xorshift.randomInt64 = function () { return [0, 0x00000f00] }
+      t.plan(2)
+      xorshift.randomInt64 = function () {
+        t.pass()
+        return [0, 0x00000f00]
+      }
       t.equal(xorshift.random(), Math.pow(2, -53))
       t.end()
     })
 
     t.test('should drop first 11 bits', function (t) {
-      xorshift.randomInt64 = function () { return [ 0xffffffff, 0xffffffff ] }
+      t.plan(3)
+      xorshift.randomInt64 = function () {
+        t.pass()
+        return [ 0xffffffff, 0xffffffff ]
+      }
       var buffer = new Buffer(8)
       buffer.writeDoubleBE(xorshift.random(), 0)
       t.equal(buffer.readUInt32BE(0), 0x3fefffff)
@@ -57,7 +60,11 @@ tap.test('XorShift', function (t) {
 
   t.test('randomBytes', function (t) {
     t.test('size equal 7', function (t) {
-      xorshift.randomInt64 = function () { return [ 0xffffffff, 0xffffffff ] }
+      t.plan(2)
+      xorshift.randomInt64 = function () {
+        t.pass()
+        return [ 0xffffffff, 0xffffffff ]
+      }
       t.same(xorshift.randomBytes(7).toString('hex'), 'ffffffffffffff')
       t.end()
     })

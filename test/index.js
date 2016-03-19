@@ -1,11 +1,11 @@
 'use strict'
-var tap = require('tap')
+var tape = require('tape')
 var xorshift = require('../')
 var XorShift = require('../lib/xorshift')
 var XorShift128Plus = require('../lib/xorshift128plus')
 var XorShift1024Star = require('../lib/xorshift1024star')
 
-tap.test('index', function (t) {
+tape.test('index', function (t) {
   t.test('instance of XorShift', function (t) {
     t.ok(xorshift instanceof XorShift)
     t.end()

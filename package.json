@@ -31,9 +31,10 @@
     "url": "https://github.com/fanatid/xorshift.js.git"
   },
   "scripts": {
+    "coverage": "nyc npm run unit",
     "lint": "standard",
     "test": "npm run lint && npm run unit",
-    "unit": "tap --cov test/**/*.js",
+    "unit": "tape test/*.js",
     "unit:compile": "$CC test/xorshift.c -o test/xorshift -std=c99"
   },
   "dependencies": {
@@ -41,8 +42,9 @@
   },
   "devDependencies": {
     "benchmark": "^2.1.0",
+    "nyc": "^6.1.1",
     "spawn-sync": "^1.0.15",
     "standard": "^6.0.4",
-    "tap": "^5.4.0"
+    "tape": "^4.5.1"
   }
 }

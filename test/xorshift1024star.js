@@ -1,14 +1,14 @@
 'use strict'
-var tap = require('tap')
+var tape = require('tape')
 var XorShift = require('../lib/xorshift')
 var XorShift1024Star = require('../lib/xorshift1024star')
 
 var fixtures = require('./fixtures')
 
-tap.test('XorShift1024Star', function (t) {
+tape.test('XorShift1024Star', function (t) {
   t.test('initialization', function (t) {
     t.test('seed is undefined', function (t) {
-      t.throw(function () {
+      t.throws(function () {
         new XorShift1024Star() // eslint-disable-line no-new
       }, new TypeError('expected seed as array or hex string'))
       t.end()
@@ -25,7 +25,7 @@ tap.test('XorShift1024Star', function (t) {
     })
 
     t.test('bad array length', function (t) {
-      t.throw(function () {
+      t.throws(function () {
         new XorShift1024Star([1, 2, 0]) // eslint-disable-line no-new
       }, new TypeError('seed length should equal 32'))
       t.end()
