@@ -41,7 +41,6 @@
     "inherits": "^2.0.1"
   },
   "devDependencies": {
-    "benchmark": "^2.1.0",
     "nyc": "^6.1.1",
     "spawn-sync": "^1.0.15",
     "standard": "^6.0.4",

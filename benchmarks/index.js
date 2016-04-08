@@ -1,19 +1,12 @@
 'use strict'
-
 var benchmark = require('benchmark')
-var xorshift = require('./')
+var xorshift = require('../')
 
 benchmark.options.minTime = 1
 
 var seed = new Array(32)
-for (var i = 0; i < seed.length; ++i) {
-  seed[i] = (Math.random() * 100) | 0
-}
+for (var i = 0; i < seed.length; ++i) seed[i] = (Math.random() * 100) | 0
 
-/**
- * @param {{rng: function}} rng
- * @return {function}
- */
 function getBenchmarkFunction (rng) {
   return function () {
     rng.random()
