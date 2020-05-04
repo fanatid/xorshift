@@ -34,16 +34,16 @@
     "coverage": "nyc --check-coverage --branches 100 --functions 100 tape test/*.js",
     "lint": "standard",
     "test": "npm run lint && npm run unit",
-    "unit": "tape test/*.js",
-    "unit:compile": "$CC test/xorshift.c -o test/xorshift -std=c99"
-  },
-  "dependencies": {
-    "inherits": "^2.0.4"
+    "unit": "npm run unit:compile && tape test/*.js",
+    "unit:compile": "cc test/xorshift.c -o test/xorshift -std=c99"
   },
   "devDependencies": {
     "nyc": "^15.0.1",
     "spawn-sync": "^2.0.0",
     "standard": "^14.3.3",
     "tape": "^5.0.0"
+  },
+  "engines": {
+    "node": ">= 10"
   }
 }

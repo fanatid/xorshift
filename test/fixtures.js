@@ -1,12 +1,11 @@
-'use strict'
-var path = require('path')
-var spawnSync = require('child_process').spawnSync || require('spawn-sync')
+const path = require('path')
+const spawnSync = require('child_process').spawnSync || require('spawn-sync')
 
 exports.get = function get (algo, seed, p, count) {
-  var args = [algo]
+  const args = [algo]
 
-  var buffer = new Buffer(8)
-  for (var i = 0; i < seed.length; i += 2) {
+  const buffer = Buffer.allocUnsafe(8)
+  for (let i = 0; i < seed.length; i += 2) {
     buffer.writeUInt32BE(seed[i], 0)
     buffer.writeUInt32BE(seed[i + 1], 4)
     args.push(buffer.toString('hex'))
@@ -15,8 +14,8 @@ exports.get = function get (algo, seed, p, count) {
   if (p) args.push(p.toString(10))
   args.push(count.toString(10))
 
-  var data = spawnSync(path.join(__dirname, 'xorshift'), args)
+  const data = spawnSync(path.join(__dirname, 'xorshift'), args)
   if (data.error) throw data.error
 
-  return new Buffer(data.stdout.toString().slice(0, -1), 'hex') // cut \n
+  return Buffer.from(data.stdout.toString().slice(0, -1), 'hex') // cut \n
 }

@@ -1,27 +1,26 @@
-'use strict'
-var tape = require('tape')
-var xorshift = require('../')
-var XorShift = require('../lib/xorshift')
-var XorShift128Plus = require('../lib/xorshift128plus')
-var XorShift1024Star = require('../lib/xorshift1024star')
+const tape = require('tape')
+const xorshift = require('../')
+const XorShift = require('../lib/xorshift')
+const XorShift128Plus = require('../lib/xorshift128plus')
+const XorShift1024Star = require('../lib/xorshift1024star')
 
-tape.test('index', function (t) {
-  t.test('instance of XorShift', function (t) {
+tape.test('index', (t) => {
+  t.test('instance of XorShift', (t) => {
     t.ok(xorshift instanceof XorShift)
     t.end()
   })
 
-  t.test('has XorShift', function (t) {
+  t.test('has XorShift', (t) => {
     t.ok(xorshift.XorShift === XorShift)
     t.end()
   })
 
-  t.test('has XorShift128Plus', function (t) {
+  t.test('has XorShift128Plus', (t) => {
     t.ok(xorshift.XorShift128Plus === XorShift128Plus)
     t.end()
   })
 
-  t.test('has XorShift1024Star', function (t) {
+  t.test('has XorShift1024Star', (t) => {
     t.ok(xorshift.XorShift1024Star === XorShift1024Star)
     t.end()
   })

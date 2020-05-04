@@ -16,9 +16,9 @@ npm install xorshift.js
 ## Example
 
 ```js
-var xorshift = require('xorshift.js')
+const xorshift = require('xorshift.js')
 
-for (var i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   console.log(xorshift.random()) // number in range [0, 1)
 }
 ```
@@ -32,9 +32,9 @@ This module exports a default PRNG created from `XorShift128Plus` with seed that
 Construct xorshift128+ with specific seed.
 
 ```js
-var XorShift128Plus = require('xorshift.js').XorShift128Plus
-var prng1 = new XorShift128Plus([1, 0, 2, 0])
-var prng2 = new XorShift128Plus('000000010000000000000002')
+const { XorShift128Plus } = require('xorshift.js')
+const prng1 = new XorShift128Plus([1, 0, 2, 0])
+const prng2 = new XorShift128Plus('000000010000000000000002')
 
 assert(prng1.random() === prng2.random())
 ```
@@ -44,11 +44,10 @@ assert(prng1.random() === prng2.random())
 Construct xorshift1024* with specific seed (longer period, but slower).
 
 ```js
-var XorShift128Plus = require('xorshift.js').XorShift128Plus
-var seed = [ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3,
-             0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
-var prng1 = new XorShift1024Star(seed, 1)
-var prng2 = new XorShift1024Star(seed, 1)
+const { XorShift128Plus } = require('xorshift.js')
+const seed = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+const prng1 = new XorShift1024Star(seed, 1)
+const prng2 = new XorShift1024Star(seed, 1)
 
 assert(prng1.random() === prng2.random())
 ```
@@ -58,9 +57,9 @@ assert(prng1.random() === prng2.random())
 This method returns a random 64-bit integer represented as array with two 32-bit numbers.
 
 ```js
-var XorShift128Plus = require('xorshift.js').XorShift128Plus
-var prng = new XorShift128Plus([1, 0, 2, 0])
-console.log(prng.randomInt64()) // [ 8388677, 32896 ]
+const { XorShift128Plus } = require('xorshift.js')
+const prng = new XorShift128Plus([1, 0, 2, 0])
+console.log(prng.randomInt64()) // [8388677, 32896]
 ```
 
 #### random()
@@ -68,8 +67,8 @@ console.log(prng.randomInt64()) // [ 8388677, 32896 ]
 This method returns a floating-point, pseudo-random number in the range [0, 1). Like `Math.ramdom`.
 
 ```js
-var XorShift128Plus = require('xorshift.js').XorShift128Plus
-var prng = new XorShift128Plus([1, 0, 2, 0])
+const { XorShift128Plus } = require('xorshift.js')
+const prng = new XorShift128Plus([1, 0, 2, 0])
 console.log(prng.random()) // 0.0019531410653161885
 ```
 
@@ -78,8 +77,8 @@ console.log(prng.random()) // 0.0019531410653161885
 Generates pseudo-random data. The size argument is a number indicating the number of bytes to generate.
 
 ```js
-var XorShift128Plus = require('xorshift.js').XorShift128Plus
-var prng = new XorShift128Plus([1, 0, 2, 0])
+const { XorShift128Plus } = require('xorshift.js')
+const prng = new XorShift128Plus([1, 0, 2, 0])
 console.log(prng.randomBytes(10).toString('hex')) // 00800045000080800200
 ```
 
