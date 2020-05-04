@@ -7,17 +7,17 @@ tape.test('XorShift', function (t) {
 
   t.test('_hex2seed', function (t) {
     t.test('size is 4 and hex is 0102030405060708', function (t) {
-      t.same(xorshift._hex2seed(4, '0102030405060708'), [ 16909060, 84281096, 0, 0 ])
+      t.same(xorshift._hex2seed(4, '0102030405060708'), [16909060, 84281096, 0, 0])
       t.end()
     })
 
     t.test('size is 4 and hex is 02030405060708', function (t) {
-      t.same(xorshift._hex2seed(4, '02030405060708'), [ 33752069, 395016, 0, 0 ])
+      t.same(xorshift._hex2seed(4, '02030405060708'), [33752069, 395016, 0, 0])
       t.end()
     })
 
     t.test('size is 1 and hex is 02030405060708', function (t) {
-      t.same(xorshift._hex2seed(1, '02030405060708'), [ 33752069 ])
+      t.same(xorshift._hex2seed(1, '02030405060708'), [33752069])
       t.end()
     })
 
@@ -46,7 +46,7 @@ tape.test('XorShift', function (t) {
       t.plan(3)
       xorshift.randomInt64 = function () {
         t.pass()
-        return [ 0xffffffff, 0xffffffff ]
+        return [0xffffffff, 0xffffffff]
       }
       var buffer = new Buffer(8)
       buffer.writeDoubleBE(xorshift.random(), 0)
@@ -63,7 +63,7 @@ tape.test('XorShift', function (t) {
       t.plan(2)
       xorshift.randomInt64 = function () {
         t.pass()
-        return [ 0xffffffff, 0xffffffff ]
+        return [0xffffffff, 0xffffffff]
       }
       t.same(xorshift.randomBytes(7).toString('hex'), 'ffffffffffffff')
       t.end()

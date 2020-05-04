@@ -24,6 +24,6 @@ new benchmark.Suite({
     console.log('==================================================')
   }
 })
-.add('xorshift128+', getBenchmarkFunction(new xorshift.XorShift128Plus(seed.slice(0, 4))))
-.add('xorshift1024*', getBenchmarkFunction(new xorshift.XorShift1024Star(seed, 1)))
-.run()
+  .add('xorshift128+', getBenchmarkFunction(new xorshift.XorShift128Plus(seed.slice(0, 4))))
+  .add('xorshift1024*', getBenchmarkFunction(new xorshift.XorShift1024Star(seed, 1)))
+  .run()
